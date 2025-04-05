@@ -41,5 +41,5 @@ def scrape_channel_uploads(channel_url: str, output_csv: str = 'videos.csv'):
 
 if __name__ == "__main__":
     # 👇 Replace this with any public YouTube channel URL
-    channel_url = 'https://www.youtube.com/@AndrejKarpathy'
+    channel_url = 'https://www.youtube.com/@askvinh'
     scrape_channel_uploads(channel_url)
