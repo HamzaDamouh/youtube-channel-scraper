@@ -1,17 +1,20 @@
 import os
 import psycopg2 # type: ignore
 from psycopg2.extras import execute_values # type: ignore
+from dotenv import load_dotenv # type: ignore
+
+load_dotenv()
 
 
 def get_connection():
     """_summary_
     """
     conn = psycopg2.connect(
-        host = os.getenv('DB_HOST','localhost'),
-        port = os.getenv('DB_PORT','5432'),
-        database = os.getenv('DB_NAME','youtube_analyzer'),
-        user = os.getenv('DB_USER', 'postgres'),
-        password = os.getenv('DB_PASSWORD', 'postgres')
+        host = os.getenv('DB_HOST'),
+        port = os.getenv('DB_PORT'),
+        database = os.getenv('DB_NAME'),
+        user = os.getenv('DB_USER'),
+        password = os.getenv('DB_PASSWORD')
     )
     return conn
 
