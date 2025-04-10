@@ -6,6 +6,7 @@ import pickle
 import yt_dlp
 import pandas as pd
 from datetime import timedelta
+from db.db_connection import insert_videos
 
 def seconds_to_hms(seconds: int) -> str:
     """Convert seconds to hh:mm:ss format."""
@@ -173,6 +174,10 @@ if __name__ == '__main__':
                         help="Output file format (csv, json, excel)")
     parser.add_argument('--refresh', action='store_true', help="Force refresh (ignore cache)")
     parser.add_argument('--workers', type=int, default=5, help="Maximum number of parallel workers")
+    parser.add_argument('--to-db', action='store_true', help="Insert scraped data into PostgreSQL")
     args = parser.parse_args()
 
-    scrape_channel_uploads(args.channel, args.output, args.format, args.refresh, args.workers)
+    df = scrape_channel_uploads(args.channel, args.output, args.format, args.refresh, args.workers)
+    if args.to_db and df is not None:
+        videos = df.to_dict(orient='records')
+        insert_videos(videos)
