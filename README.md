@@ -1,26 +1,38 @@
-# 📺 YouTube Channel Video Scraper
+YouTube Channel Scraper
+A simple Python script that uses yt-dlp to scrape video metadata from a YouTube channel. It extracts information like title, duration, published date, and description. The script uses parallel processing and caching, and it exports data in CSV, JSON, or Excel formats.
 
-A Python tool that extracts all videos from a public YouTube channel and stores the video `ID`, `title`, and `duration` in a clean CSV table. Ideal for organizing channels into themes, filtering content, and building personalized mini-courses.
+Requirements
+Python 3.6 or higher
 
----
+yt-dlp
 
-## 🚀 Features
+pandas
 
-- ✅ Extracts all videos from any public YouTube channel
-- 🗂️ Stores video ID, title, and duration in a table
-- 🔍 Prepares for filtering, classification, and playlist creation
-- 💾 Outputs clean `videos.csv` file
+ffmpeg (ensure it's installed and available in your system PATH or update the script with its location)
 
----
+Install dependencies with:
 
-## 🧰 Requirements
+bash
+Copy
+pip install yt-dlp pandas
+Usage
+Run the script using the command line. For example:
 
-- Python 3.7+
-- [`yt-dlp`](https://github.com/yt-dlp/yt-dlp)
-- `pandas`
+bash
+Copy
+python scraper.py --channel "https://www.youtube.com/@{channelid}/videos" --output "channel_videos.csv" --format csv --refresh --workers 8
+Command-Line Options
+--channel: (Required) The YouTube channel URL.
 
-Install with:
+--output: Output filename (default: videos.csv).
 
-```bash
-pip install -r requirements.txt
+--format: Output format: csv, json, or excel (default: csv).
 
+--refresh: Force a fresh scrape (ignore cached data).
+
+--workers: Number of parallel worker threads (default: 5).
+
+Notes
+The script assigns sequential IDs (1, 2, 3, …) to videos instead of the original YouTube video IDs.
+
+The data is cached to avoid re-scraping unchanged channels.
