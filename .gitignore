@@ -1,10 +1,9 @@
 # Ignore the output CSV file
-videos.csv
+.csv
 
 # Ignore Python cache files
 __pycache__/
 *.pyc
 
-# (Optional) Ignore environment config if needed
 .env
 
