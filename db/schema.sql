@@ -1,8 +1,13 @@
-CREATE TABLE IF NOT EXISTS videos (
-    id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
-    duration TEXT,
-    url TEXT NOT NULL,
-    published_date DATE,
-    description TEXT
+CREATE TABLE channels (
+  id SERIAL PRIMARY KEY,
+  channel_name TEXT UNIQUE NOT NULL
+
+CREATE TABLE videos (
+  id SERIAL PRIMARY KEY,
+  channel_id INTEGER REFERENCES channels(id),
+  title TEXT,
+  duration INTERVAL,
+  url TEXT UNIQUE,
+  published_date DATE,
+  description TEXT
 );

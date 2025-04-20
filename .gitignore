@@ -1,9 +1,5 @@
-# Ignore the output CSV file
 .csv
-
-# Ignore Python cache files
 __pycache__/
 *.pyc
-
 .env
-
+.log
